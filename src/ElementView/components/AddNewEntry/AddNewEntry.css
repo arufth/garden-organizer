@@ -1,0 +1,45 @@
+.element-view-section {
+  ul {
+    .add-new-entry {
+      cursor: auto;
+      background: transparent;
+      color: var(--black);
+      gap: 0rem;
+
+      a {
+        width: 90px;
+        height: 90px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        background: transparent;
+      }
+
+      svg {
+        color: var(--black);
+        width: 100%;
+        height: auto;
+        transition: all 250ms ease;
+      }
+
+      h4 {
+        color: var(--black);
+        font-size: 1.2rem;
+      }
+    }
+
+    .add-new-entry:hover {
+      background: transparent;
+      transform: scale(1);
+
+      svg {
+        color: var(--black);
+      }
+
+      svg:hover {
+        color: var(--sec-orange);
+        transform: scale(1.2);
+      }
+    }
+  }
+}

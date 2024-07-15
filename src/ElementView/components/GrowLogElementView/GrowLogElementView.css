@@ -1,0 +1,11 @@
+.element-view-section {
+  ul {
+    margin-bottom: 4rem;
+    width: 80%;
+    list-style-type: none;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem 1rem;
+  }
+}

@@ -1,0 +1,14 @@
+.no-results-div {
+  margin-top: 4rem;
+
+  .empty-grow-log {
+    font-size: 2rem;
+    text-align: center;
+    color: var(--sec-orange);
+  }
+
+  .sub-empty-grow-log {
+    text-align: center;
+    color: var(--yellow);
+  }
+}

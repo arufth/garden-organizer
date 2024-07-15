@@ -1,0 +1,94 @@
+.table-view-section {
+  table {
+    border-collapse: collapse;
+    font-family: sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: .1rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    font-family: "Outfit", sans-serif;
+    width: 70%;
+  }
+  
+  caption {
+    caption-side: bottom;
+    padding: 10px;
+  }
+  
+  thead,
+  tfoot {
+    background-color: var(--sec-orange);
+  }
+  
+  thead tr th {
+    color: var(--white);
+  }
+  
+  th {
+    font-weight: 500;
+  }
+  
+  th,
+  td {
+    padding: 8px 10px;
+  }
+  
+  th img {
+    width: 60px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  td button {
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 250ms ease;
+  
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  td .edit-btn:hover {
+    transform: scale(1.2);
+    color: var(--yellow);
+  }
+  
+  td .delete-btn:hover {
+    transform: scale(1.2);
+    color: var(--sec-orange);
+  }
+  
+  td:last-of-type {
+    text-align: center;
+  }
+  
+  tbody > tr:nth-of-type(even) {
+    background-color: #d5b19157;
+  }
+  
+  tfoot th {
+    text-align: right;
+  }
+  
+  tfoot td {
+    font-weight: bold;
+  }
+  
+  tr {
+    transition: all 250ms ease;
+  }
+  
+  tr:hover {
+    transform: scale(1.025);
+  }
+  
+  thead tr:hover{
+    transform:none;
+  }
+}

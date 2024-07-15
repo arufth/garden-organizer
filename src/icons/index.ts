@@ -1,0 +1,5 @@
+export * from './AddSvg'
+export * from './DeleteSvg'
+export * from './EditSvg'
+export * from './GoBackSvg'
+export * from './UploadSvg'

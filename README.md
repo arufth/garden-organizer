@@ -4,6 +4,12 @@ This web application is designed for gardening enthusiasts who wish to manage an
 
 ![Garden Organizer App](/public/garden-organizer.jpeg)
 
+## Live Demo
+
+This [Live Demo](https://garden-organizer.netlify.app/)  does not have a backend or local storage, so all data will be lost when the page is refreshed. Although the app has a fake logs, so you can see how it works.
+In the future, I plan to add local storage and after that, a backend to store user data.
+At this moment, the demo is only for testing the app's functionality.
+
 ## Features
 
 - **Plant Management**: Users can add, view, and manage their plant entries, making it easier to keep track of their gardening activities.

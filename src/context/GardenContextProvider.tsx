@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { GardenContext } from './'
 import { ChildrenProps } from '../../types'
-import { useGardenSelector } from '../hooks'
+import { useFilteredGrowLog, useGardenSelector } from '../hooks'
 import { getCurrentId, getCurrentGrowLog } from '../services'
 
 export const GardenContextProvider: React.FC<ChildrenProps> = ({ children }) => {
@@ -9,15 +9,7 @@ export const GardenContextProvider: React.FC<ChildrenProps> = ({ children }) => 
   const [currentId, setCurrentId] = useState(() => getCurrentId())
   const [currentGrowLog, setCurrentGrowLog] = useState(() => getCurrentGrowLog(growLog, ''))
 
-  const { currentSearch } = useGardenSelector(state => state.garden)
-
   const changeCurrentId = (id: string): void => { setCurrentId(id) }
-
-  const growLogFilter = (): typeof growLog => {
-    const newFilterGrowLog = growLog.filter(log =>
-      log.name.toLowerCase().startsWith(currentSearch.toLowerCase()))
-    return newFilterGrowLog
-  }
 
   useEffect(() => {
     setCurrentGrowLog(getCurrentGrowLog(growLog, currentId))
@@ -27,7 +19,7 @@ export const GardenContextProvider: React.FC<ChildrenProps> = ({ children }) => 
 
   return (
     <GardenContext.Provider value={{
-      growLog: growLogFilter(),
+      growLog: useFilteredGrowLog(),
       currentId,
       changeCurrentId,
       currentGrowLog

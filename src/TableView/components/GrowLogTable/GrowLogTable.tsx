@@ -1,13 +1,12 @@
 import { EditSvg, DeleteSvg } from '../../../icons'
-import { useEditGrowLog, useFilteredGrowLog, useGardenDispatch } from '../../../hooks'
+import { useEditGrowLog, useFilteredGrowLog, useGardenActions } from '../../../hooks'
 import { HEADER_TABLE } from '../../../../constants'
-import { removeLog } from '../../../garden'
 import './GrowLogTable.css'
 
 export const GroLogTable: React.FC = () => {
   const growLog = useFilteredGrowLog()
   const { editGrowLog } = useEditGrowLog()
-  const dispatch = useGardenDispatch()
+  const { removeGrowLog } = useGardenActions()
 
   return (
     <table>
@@ -45,7 +44,7 @@ export const GroLogTable: React.FC = () => {
               </td>
               <td>
                 <button
-                  onClick={() => dispatch(removeLog(log.id))}
+                  onClick={() => removeGrowLog(log.id)}
                   className='delete-btn'
                 >
                   <DeleteSvg />

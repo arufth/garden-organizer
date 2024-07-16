@@ -1,7 +1,3 @@
-export interface defaultContextValueType {
-  currentGrowLog: growLogType
-}
-
 export interface growLogType {
   id: string
   name: string
@@ -26,4 +22,19 @@ export interface useEditGrowLogReturnType {
 
 export interface ChildrenProps {
   children: React.ReactNode
+}
+
+export interface initialStateType {
+  growLog: growLogsType
+  currentSearch: string
+  currentId: string
+  currentGrowLog: growLogType
+}
+
+export interface GardenActionsReturnType {
+  addGrowLog: (growLog: growLogType) => void
+  removeGrowLog: (id: string) => void
+  updateGrowLog: (growLog: growLogType) => void
+  changeCurrentSearch: (search: string) => void
+  changeCurrentId: (id: string) => void
 }

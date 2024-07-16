@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import './AddNewEntry.css'
-import { useGardenDispatch } from '../../../hooks'
-import { changeCurrentId } from '../../../garden'
+import { useGardenActions } from '../../../hooks'
 
 export const AddNewEntry: React.FC = () => {
   const [id] = useState(window.crypto.randomUUID())
-  const dispatch = useGardenDispatch()
+  const { changeCurrentId } = useGardenActions()
 
   const onClick = (): void => {
-    dispatch(changeCurrentId(id))
+    changeCurrentId(id)
   }
 
   return (

@@ -4,20 +4,19 @@ import { defaultGrowLog } from '../../../constants'
 import { growLogType, handleEventChangeType } from '../../../types'
 import { GoBackSvg, UploadSvg } from '../../icons'
 import { EditButtons } from '../'
-import { useGardenDispatch, useGetCurrentGrowLog } from '../../hooks'
-import { addLog, updateLog } from '../../garden'
+import { useGardenActions, useGetCurrentGrowLog } from '../../hooks'
 import './FormGrowLog.css'
 
 export const FormGrowLog: React.FC = () => {
   const currentGrowLog = useGetCurrentGrowLog()
   const [currentAction, setCurrentAction] = useState('')
   const { plantId } = useParams()
-  const dispatch = useGardenDispatch()
+
+  const { addGrowLog, updateGrowLog } = useGardenActions()
   const navigate = useNavigate()
   const goBack = (): void => { navigate(-1) }
 
   // TODO: check if the currentId is valid
-  // console.log(plantId)
 
   const [formFields, setFormFields] = useState({
     name: '',
@@ -44,8 +43,8 @@ export const FormGrowLog: React.FC = () => {
       description: formData.get('description') as string,
       cover // TODO: pick the correct image (user input)
     }
-    if (currentAction === 'add') dispatch(addLog((newGrowLog)))
-    else dispatch(updateLog(newGrowLog))
+    if (currentAction === 'add') addGrowLog(newGrowLog)
+    else updateGrowLog(newGrowLog)
   }
 
   const handleChange = (event: handleEventChangeType): void => {

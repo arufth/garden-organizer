@@ -1,14 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import { useEditGrowLogReturnType } from '../../types'
-import { useGardenDispatch } from './useGardenDispatch'
-import { changeCurrentId } from '../garden'
+import { useGardenActions } from './useGardenActions'
 
 export const useEditGrowLog = (): useEditGrowLogReturnType => {
-  const dispatch = useGardenDispatch()
   const navigate = useNavigate()
+  const { changeCurrentId } = useGardenActions()
 
   const editGrowLog = (id: string): void => {
-    dispatch(changeCurrentId(id))
+    changeCurrentId(id)
     navigate(`plant/edit/${id}`)
   }
 

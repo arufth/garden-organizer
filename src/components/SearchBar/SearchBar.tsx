@@ -1,13 +1,12 @@
-import { useGardenDispatch, useGardenSelector } from '../../hooks'
-import { changeCurrentSearch } from '../../garden'
+import { useGardenActions, useGardenSelector } from '../../hooks'
 import './SearchBar.css'
 
 export const SearchBar: React.FC = () => {
-  const dispatch = useGardenDispatch()
+  const { changeCurrentSearch } = useGardenActions()
   const { currentSearch } = useGardenSelector(state => state.garden)
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    dispatch(changeCurrentSearch(event.target.value))
+    changeCurrentSearch(event.target.value)
   }
 
   return (

@@ -1,4 +1,5 @@
-import { defaultContextValueType } from './types'
+import { getGrowLog } from './src/services'
+import { initialStateType } from './types'
 
 export const defaultGrowLog = {
   id: '',
@@ -14,10 +15,6 @@ export const defaultGrowLog = {
   yieldExpected: ''
 }
 
-export const defaultContextValue: defaultContextValueType = {
-  currentGrowLog: defaultGrowLog
-}
-
 export const HEADER_TABLE = [
   'Photo',
   'Name',
@@ -26,3 +23,10 @@ export const HEADER_TABLE = [
   'Edit',
   'Delete'
 ]
+
+export const initialState: initialStateType = {
+  growLog: getGrowLog(),
+  currentSearch: '',
+  currentId: '',
+  currentGrowLog: defaultGrowLog // call getCurrentId()
+}

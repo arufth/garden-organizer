@@ -1,16 +1,14 @@
 import { growLogType } from '../../../../types'
-import { useEditGrowLog, useGardenDispatch } from '../../../hooks'
+import { useEditGrowLog, useGardenActions } from '../../../hooks'
 import { DeleteSvg, EditSvg } from '../../../icons'
 import './GrowLogItem.css'
-import { removeLog } from '../../../garden'
-
 interface Props {
   log: growLogType
 }
 
 export const GrowLogItem: React.FC<Props> = ({ log }) => {
   const { editGrowLog } = useEditGrowLog()
-  const dispatch = useGardenDispatch()
+  const { removeGrowLog } = useGardenActions()
 
   return (
     <li>
@@ -20,7 +18,7 @@ export const GrowLogItem: React.FC<Props> = ({ log }) => {
         <div className='actions'>
           <button
             className='delete-btn'
-            onClick={() => dispatch(removeLog(log.id))}
+            onClick={() => removeGrowLog(log.id)}
           >
             <DeleteSvg />
           </button>

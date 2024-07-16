@@ -26,7 +26,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: VT323;
-  /* color: var(--black); */
+
 }
 
 html {
@@ -36,4 +36,3 @@ html {
 body {
   background: var(--background-color);
 }
-

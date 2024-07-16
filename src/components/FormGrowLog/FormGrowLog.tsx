@@ -32,7 +32,7 @@ export const FormGrowLog: React.FC = () => {
     const form = event.currentTarget
     const formData = new FormData(form)
 
-    const cover = formFields.cover === '' ? '/public/image-placeholder.jpg' : formFields.cover
+    const cover = formFields.cover === '' ? '/image-placeholder.jpg' : formFields.cover
 
     const newGrowLog: growLogType = {
       ...defaultGrowLog,
@@ -62,7 +62,7 @@ export const FormGrowLog: React.FC = () => {
     const harvestDate = currentGrowLog.harvestDate
     const cover = currentGrowLog.cover !== ''
       ? currentGrowLog.cover
-      : '/public/image-placeholder.jpg'
+      : '/image-placeholder.jpg'
 
     setCurrentAction(name !== '' ? 'update' : 'add')
 

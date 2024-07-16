@@ -18,6 +18,7 @@ export const FormGrowLog: React.FC = () => {
   const goBack = (): void => { navigate(-1) }
 
   // TODO: check if the currentId is valid
+  // console.log(plantId)
 
   const [formFields, setFormFields] = useState({
     name: '',

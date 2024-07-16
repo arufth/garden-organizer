@@ -28,8 +28,6 @@ export const defaultContextValue: defaultContextValueType = {
     harvestDate: '',
     yieldExpected: ''
   }],
-  changeCurrentId: () => {},
-  currentId: '',
   currentGrowLog: defaultGrowLog
 }
 

@@ -8,15 +8,14 @@ export const GardenContextProvider: React.FC<ChildrenProps> = ({ children }) => 
   const { growLog } = useGardenSelector(state => state.garden)
   const [currentId, setCurrentId] = useState(() => getCurrentId())
   const [currentGrowLog, setCurrentGrowLog] = useState(() => getCurrentGrowLog(growLog, ''))
-  const [search, setSearch] = useState('')
 
-  const changeSearch = (newSearch: string): void => { setSearch(newSearch) }
+  const { currentSearch } = useGardenSelector(state => state.garden)
 
   const changeCurrentId = (id: string): void => { setCurrentId(id) }
 
   const growLogFilter = (): typeof growLog => {
     const newFilterGrowLog = growLog.filter(log =>
-      log.name.toLowerCase().startsWith(search.toLowerCase()))
+      log.name.toLowerCase().startsWith(currentSearch.toLowerCase()))
     return newFilterGrowLog
   }
 
@@ -28,8 +27,6 @@ export const GardenContextProvider: React.FC<ChildrenProps> = ({ children }) => 
 
   return (
     <GardenContext.Provider value={{
-      search,
-      changeSearch,
       growLog: growLogFilter(),
       currentId,
       changeCurrentId,

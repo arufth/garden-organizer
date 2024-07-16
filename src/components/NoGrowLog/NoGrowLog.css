@@ -5,10 +5,12 @@
     font-size: 2rem;
     text-align: center;
     color: var(--sec-orange);
+    font-weight: normal;
   }
 
   .sub-empty-grow-log {
     text-align: center;
     color: var(--yellow);
+    font-weight: normal;
   }
 }

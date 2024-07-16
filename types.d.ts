@@ -1,8 +1,6 @@
 import { growLog } from './growLog.json'
 
 export interface defaultContextValueType {
-  search: string
-  changeSearch: (newSearch: string) => void
   growLog: typeof growLog
   changeCurrentId: (id: string) => void
   currentId: string

@@ -4,10 +4,12 @@ import { getGrowLog } from '../services'
 
 export interface initialStateType {
   growLog: growLogsType
+  currentSearch: string
 }
 
 const initialState: initialStateType = {
-  growLog: getGrowLog()
+  growLog: getGrowLog(),
+  currentSearch: ''
 }
 
 export const gardenSlice: Slice<initialStateType> = createSlice({
@@ -17,6 +19,7 @@ export const gardenSlice: Slice<initialStateType> = createSlice({
     addLog: ({ growLog }, action: PayloadAction<growLogType>) => {
       growLog.unshift(action.payload)
     },
+
     removeLog: (state, action: PayloadAction<string>) => {
       const id = action.payload
       const { growLog } = state
@@ -25,6 +28,7 @@ export const gardenSlice: Slice<initialStateType> = createSlice({
         growLog: growLog.filter(log => log.id !== id)
       }
     },
+
     updateLog: (state, action: PayloadAction<growLogType>) => {
       const { id } = action.payload
       const { growLog } = state
@@ -36,8 +40,20 @@ export const gardenSlice: Slice<initialStateType> = createSlice({
         ...state,
         growLog: newGrowLog
       }
+    },
+
+    changeCurrentSearch: (state, action: PayloadAction<string>) => {
+      return {
+        ...state,
+        currentSearch: action.payload
+      }
     }
   }
 })
 
-export const { addLog, removeLog, updateLog } = gardenSlice.actions
+export const {
+  addLog,
+  removeLog,
+  updateLog,
+  changeCurrentSearch
+} = gardenSlice.actions

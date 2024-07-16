@@ -1,12 +1,13 @@
+import { useGardenDispatch, useGardenSelector } from '../../hooks'
+import { changeCurrentSearch } from '../../garden'
 import './SearchBar.css'
-import { useContext } from 'react'
-import { GardenContext } from '../../context'
 
 export const SearchBar: React.FC = () => {
-  const { changeSearch, search } = useContext(GardenContext)
+  const dispatch = useGardenDispatch()
+  const { currentSearch } = useGardenSelector(state => state.garden)
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    changeSearch(event.target.value)
+    dispatch(changeCurrentSearch(event.target.value))
   }
 
   return (
@@ -17,7 +18,7 @@ export const SearchBar: React.FC = () => {
           type='text'
           placeholder='Carrot giant'
           name='name'
-          value={search}
+          value={currentSearch}
           onChange={onChange}
         />
       </label>

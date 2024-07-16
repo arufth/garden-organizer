@@ -15,8 +15,6 @@ export const defaultGrowLog = {
 }
 
 export const defaultContextValue: defaultContextValueType = {
-  search: '',
-  changeSearch: () => { },
   growLog: [{
     id: '',
     name: '',

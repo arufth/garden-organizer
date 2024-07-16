@@ -20,11 +20,11 @@ This web application is designed for gardening enthusiasts who wish to manage an
 
 ## TODO
 
-- [ ] Implement tests.
+- [ ] Use local storage to persist data (easy). 
 - [ ] Add authentication and user accounts to manage a database of users' plants.
-- [ ] Add more features for plant management and growth tracking.
-- [ ] Improve UI/UX design.
-- [ ] Add animations and transitions for a more interactive experience.
-- [ ] Add responsive design for mobile devices. 
-- [ ] Add more filters and sorting options for plants.
 - [ ] Option to change the image-cover of the plant.
+- [ ] Add more features for plant management and growth tracking.
+- [ ] Add more filters and sorting options for plants.
+- [ ] Add responsive design for mobile devices. 
+- [ ] Improve UI/UX design.
+- [ ] Implement tests.

@@ -1,13 +1,11 @@
 import { EditSvg, DeleteSvg } from '../../../icons'
-import { useEditGrowLog, useGardenDispatch } from '../../../hooks'
+import { useEditGrowLog, useFilteredGrowLog, useGardenDispatch } from '../../../hooks'
 import { HEADER_TABLE } from '../../../../constants'
 import { removeLog } from '../../../garden'
-import { useContext } from 'react'
-import { GardenContext } from '../../../context'
 import './GrowLogTable.css'
 
 export const GroLogTable: React.FC = () => {
-  const { growLog } = useContext(GardenContext)
+  const growLog = useFilteredGrowLog()
   const { editGrowLog } = useEditGrowLog()
   const dispatch = useGardenDispatch()
 

@@ -2,11 +2,10 @@ import { NavBar, NoGrowLog } from '../components'
 import { GrowLogElementView } from './components'
 
 import './ElementView.css'
-import { useContext } from 'react'
-import { GardenContext } from '../context'
+import { useFilteredGrowLog } from '../hooks'
 
 export const ElementView: React.FC = () => {
-  const { growLog } = useContext(GardenContext)
+  const growLog = useFilteredGrowLog()
 
   return (
     <>

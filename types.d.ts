@@ -1,7 +1,4 @@
-import { growLog } from './growLog.json'
-
 export interface defaultContextValueType {
-  growLog: typeof growLog
   currentGrowLog: growLogType
 }
 

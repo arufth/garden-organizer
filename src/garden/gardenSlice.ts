@@ -1,17 +1,20 @@
 import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit'
 import { growLogType, growLogsType } from '../../types'
 import { getGrowLog } from '../services'
+import { defaultGrowLog } from '../../constants'
 
 export interface initialStateType {
   growLog: growLogsType
   currentSearch: string
   currentId: string
+  currentGrowLog: growLogType
 }
 
 const initialState: initialStateType = {
   growLog: getGrowLog(),
   currentSearch: '',
-  currentId: '' // call getCurrentId()
+  currentId: '',
+  currentGrowLog: defaultGrowLog // call getCurrentId()
 }
 
 export const gardenSlice: Slice<initialStateType> = createSlice({

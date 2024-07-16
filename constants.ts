@@ -15,19 +15,6 @@ export const defaultGrowLog = {
 }
 
 export const defaultContextValue: defaultContextValueType = {
-  growLog: [{
-    id: '',
-    name: '',
-    datePlanted: '',
-    cover: '',
-    description: '',
-    location: '',
-    soilType: '',
-    sunExposure: '',
-    wateringSchedule: '',
-    harvestDate: '',
-    yieldExpected: ''
-  }],
   currentGrowLog: defaultGrowLog
 }
 

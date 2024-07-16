@@ -1,11 +1,10 @@
 import { NavBar, NoGrowLog } from '../components'
 import { AddNewEntry, GroLogTable } from './components'
-import { useContext } from 'react'
-import { GardenContext } from '../context'
 import './TableView.css'
+import { useFilteredGrowLog } from '../hooks'
 
 export const TableView: React.FC = () => {
-  const { growLog } = useContext(GardenContext)
+  const growLog = useFilteredGrowLog()
   return (
     <>
       <NavBar />

@@ -1,16 +1,15 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { defaultGrowLog } from '../../../constants'
 import { growLogType, handleEventChangeType } from '../../../types'
 import { GoBackSvg, UploadSvg } from '../../icons'
 import { EditButtons } from '../'
-import { useGardenDispatch } from '../../hooks'
+import { useGardenDispatch, useGetCurrentGrowLog } from '../../hooks'
 import { addLog, updateLog } from '../../garden'
-import { GardenContext } from '../../context'
 import './FormGrowLog.css'
 
 export const FormGrowLog: React.FC = () => {
-  const { currentGrowLog } = useContext(GardenContext)
+  const currentGrowLog = useGetCurrentGrowLog()
   const [currentAction, setCurrentAction] = useState('')
   const { plantId } = useParams()
   const dispatch = useGardenDispatch()

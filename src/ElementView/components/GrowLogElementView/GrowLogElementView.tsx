@@ -1,10 +1,9 @@
 import { AddNewEntry, GrowLogItem } from '../'
 import './GrowLogElementView.css'
-import { useContext } from 'react'
-import { GardenContext } from '../../../context'
+import { useFilteredGrowLog } from '../../../hooks'
 
 export const GrowLogElementView: React.FC = () => {
-  const { growLog } = useContext(GardenContext)
+  const growLog = useFilteredGrowLog()
 
   return (
     <ul>

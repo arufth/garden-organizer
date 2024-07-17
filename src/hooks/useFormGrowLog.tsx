@@ -4,6 +4,8 @@ import { useGetCurrentGrowLog, useSendGrowLog } from './'
 import { defaultGrowLog, FORM_FIELDS, GARDEN_ACTIONS_FORM } from '../../constants'
 import { growLogType, handleEventChangeType, ReturnTypeFormGrowLog } from '../../types'
 
+import { showAlert } from '../utils'
+
 export const useFormGrowLog = (): ReturnTypeFormGrowLog => {
   const { plantId } = useParams()
   const [formFields, setFormFields] = useState(FORM_FIELDS)
@@ -29,7 +31,17 @@ export const useFormGrowLog = (): ReturnTypeFormGrowLog => {
       cover // TODO: pick the correct image (user input)
     }
 
-    sendGrowLog(newGrowLog, currentAction)
+    const subAction = currentAction === GARDEN_ACTIONS_FORM.UPDATE
+      ? 'updat'
+      : 'add'
+
+    const info = {
+      title: `You just ${subAction}ed ${formFields.name}.`,
+      text: 'You can continue modify this grow log.'
+    }
+
+    showAlert(info)
+      .finally(() => sendGrowLog(newGrowLog, currentAction))
   }
 
   const handleChange = (event: handleEventChangeType): void => {

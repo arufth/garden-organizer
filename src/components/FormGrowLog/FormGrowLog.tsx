@@ -1,77 +1,18 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { defaultGrowLog, FORM_FIELDS, GARDEN_ACTIONS_FORM } from '../../../constants'
-import { growLogType, handleEventChangeType } from '../../../types'
 import { UploadSvg } from '../../icons'
 import { EditButtons, PreviousPageButton } from '../'
-import { useGardenActions, useGetCurrentGrowLog } from '../../hooks'
+import { useFormGrowLog } from '../../hooks'
 import './FormGrowLog.css'
 
 export const FormGrowLog: React.FC = () => {
-  const currentGrowLog = useGetCurrentGrowLog()
-  const [currentAction, setCurrentAction] = useState('')
   const { plantId } = useParams()
-  const { addGrowLog, updateGrowLog } = useGardenActions()
-
-  const [formFields, setFormFields] = useState(FORM_FIELDS)
-
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault()
-
-    const form = event.currentTarget
-    const formData = new FormData(form)
-
-    const cover = formFields.cover === '' ? '/image-placeholder.jpg' : formFields.cover
-
-    const newGrowLog: growLogType = {
-      ...defaultGrowLog,
-      id: plantId as string,
-      name: formData.get('name') as string,
-      datePlanted: formData.get('datePlanted') as string,
-      harvestDate: formData.get('harvestDate') as string,
-      description: formData.get('description') as string,
-      cover // TODO: pick the correct image (user input)
-    }
-
-    if (currentAction === GARDEN_ACTIONS_FORM.ADD) addGrowLog(newGrowLog)
-    else updateGrowLog(newGrowLog)
-  }
-
-  const handleChange = (event: handleEventChangeType): void => {
-    const { name, value } = event.target
-    setFormFields(prevFields => ({
-      ...prevFields,
-      [name]: value
-    }))
-  }
-
-  useEffect(() => {
-    const name = currentGrowLog.name
-    const description = currentGrowLog.description
-    const datePlanted = currentGrowLog.datePlanted
-    const harvestDate = currentGrowLog.harvestDate
-    const cover = currentGrowLog.cover !== ''
-      ? currentGrowLog.cover
-      : '/image-placeholder.jpg'
-
-    setCurrentAction(name !== ''
-      ? GARDEN_ACTIONS_FORM.UPDATE
-      : GARDEN_ACTIONS_FORM.ADD)
-
-    setFormFields({
-      name,
-      description,
-      harvestDate,
-      datePlanted,
-      cover
-    })
-  }, [currentGrowLog])
+  const { handleChange, onSubmit, formFields } = useFormGrowLog()
 
   return (
     <section className='add-edit-grow-log'>
       <PreviousPageButton />
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={(event) => onSubmit(event, plantId as string)}>
         <img src={formFields.cover} alt='' />
         <label className='file-input-label'>
           <UploadSvg />

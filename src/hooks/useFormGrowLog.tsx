@@ -1,22 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useGetCurrentGrowLog, useSendGrowLog } from './'
 import { defaultGrowLog, FORM_FIELDS, GARDEN_ACTIONS_FORM } from '../../constants'
-import { growLogType, handleEventChangeType } from '../../types'
-import { useGardenActions } from './useGardenActions'
-import { useGetCurrentGrowLog } from './useGetCurrentGrowLog'
+import { growLogType, handleEventChangeType, ReturnTypeFormGrowLog } from '../../types'
 
-interface ReturnType {
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
-  handleChange: (event: handleEventChangeType) => void
-  formFields: typeof FORM_FIELDS
-}
-
-export const useFormGrowLog = (): ReturnType => {
+export const useFormGrowLog = (): ReturnTypeFormGrowLog => {
   const { plantId } = useParams()
   const [formFields, setFormFields] = useState(FORM_FIELDS)
   const [currentAction, setCurrentAction] = useState('')
-  const { addGrowLog, updateGrowLog } = useGardenActions()
   const currentGrowLog = useGetCurrentGrowLog()
+  const { sendGrowLog } = useSendGrowLog()
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
@@ -36,8 +29,7 @@ export const useFormGrowLog = (): ReturnType => {
       cover // TODO: pick the correct image (user input)
     }
 
-    if (currentAction === GARDEN_ACTIONS_FORM.ADD) addGrowLog(newGrowLog)
-    else updateGrowLog(newGrowLog)
+    sendGrowLog(newGrowLog, currentAction)
   }
 
   const handleChange = (event: handleEventChangeType): void => {

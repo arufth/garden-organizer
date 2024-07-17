@@ -38,3 +38,13 @@ export interface GardenActionsReturnType {
   changeCurrentSearch: (search: string) => void
   changeCurrentId: (id: string) => void
 }
+
+export interface ReturnTypeFormGrowLog {
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
+  handleChange: (event: handleEventChangeType) => void
+  formFields: typeof FORM_FIELDS
+}
+
+export interface ReturnTypeSendGrowLog {
+  sendGrowLog: (newGrowLog: growLogType, currentAction: string) => void
+}

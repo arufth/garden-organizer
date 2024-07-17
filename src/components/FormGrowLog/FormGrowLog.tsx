@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { defaultGrowLog } from '../../../constants'
+import { defaultGrowLog, FORM_FIELDS, GARDEN_ACTIONS_FORM } from '../../../constants'
 import { growLogType, handleEventChangeType } from '../../../types'
 import { UploadSvg } from '../../icons'
 import { EditButtons, PreviousPageButton } from '../'
@@ -11,18 +11,9 @@ export const FormGrowLog: React.FC = () => {
   const currentGrowLog = useGetCurrentGrowLog()
   const [currentAction, setCurrentAction] = useState('')
   const { plantId } = useParams()
-
   const { addGrowLog, updateGrowLog } = useGardenActions()
 
-  // TODO: check if the currentId is valid
-
-  const [formFields, setFormFields] = useState({
-    name: '',
-    description: '',
-    datePlanted: '',
-    harvestDate: '',
-    cover: ''
-  })
+  const [formFields, setFormFields] = useState(FORM_FIELDS)
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
@@ -41,7 +32,8 @@ export const FormGrowLog: React.FC = () => {
       description: formData.get('description') as string,
       cover // TODO: pick the correct image (user input)
     }
-    if (currentAction === 'add') addGrowLog(newGrowLog)
+
+    if (currentAction === GARDEN_ACTIONS_FORM.ADD) addGrowLog(newGrowLog)
     else updateGrowLog(newGrowLog)
   }
 
@@ -62,9 +54,17 @@ export const FormGrowLog: React.FC = () => {
       ? currentGrowLog.cover
       : '/image-placeholder.jpg'
 
-    setCurrentAction(name !== '' ? 'update' : 'add')
+    setCurrentAction(name !== ''
+      ? GARDEN_ACTIONS_FORM.UPDATE
+      : GARDEN_ACTIONS_FORM.ADD)
 
-    setFormFields({ name, description, harvestDate, datePlanted, cover })
+    setFormFields({
+      name,
+      description,
+      harvestDate,
+      datePlanted,
+      cover
+    })
   }, [currentGrowLog])
 
   return (

@@ -30,3 +30,16 @@ export const initialState: initialStateType = {
   currentId: '',
   currentGrowLog: defaultGrowLog // call getCurrentId()
 }
+
+export const FORM_FIELDS = {
+  name: '',
+  description: '',
+  datePlanted: '',
+  harvestDate: '',
+  cover: ''
+}
+
+export const GARDEN_ACTIONS_FORM = {
+  ADD: 'ADD',
+  UPDATE: 'UPDATE'
+}

@@ -1,18 +1,17 @@
-import { useParams } from 'react-router-dom'
+
 import { UploadSvg } from '../../icons'
 import { EditButtons, PreviousPageButton } from '../'
 import { useFormGrowLog } from '../../hooks'
 import './FormGrowLog.css'
 
 export const FormGrowLog: React.FC = () => {
-  const { plantId } = useParams()
   const { handleChange, onSubmit, formFields } = useFormGrowLog()
 
   return (
     <section className='add-edit-grow-log'>
       <PreviousPageButton />
 
-      <form onSubmit={(event) => onSubmit(event, plantId as string)}>
+      <form onSubmit={onSubmit}>
         <img src={formFields.cover} alt='' />
         <label className='file-input-label'>
           <UploadSvg />

@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { defaultGrowLog, FORM_FIELDS, GARDEN_ACTIONS_FORM } from '../../constants'
 import { growLogType, handleEventChangeType } from '../../types'
 import { useGardenActions } from './useGardenActions'
 import { useGetCurrentGrowLog } from './useGetCurrentGrowLog'
 
 interface ReturnType {
-  onSubmit: (event: React.FormEvent<HTMLFormElement>, plantId: string) => void
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
   handleChange: (event: handleEventChangeType) => void
   formFields: typeof FORM_FIELDS
 }
 
 export const useFormGrowLog = (): ReturnType => {
+  const { plantId } = useParams()
   const [formFields, setFormFields] = useState(FORM_FIELDS)
   const [currentAction, setCurrentAction] = useState('')
   const { addGrowLog, updateGrowLog } = useGardenActions()
   const currentGrowLog = useGetCurrentGrowLog()
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>, plantId: string): void => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
 
     const form = event.currentTarget
@@ -26,7 +28,7 @@ export const useFormGrowLog = (): ReturnType => {
 
     const newGrowLog: growLogType = {
       ...defaultGrowLog,
-      id: plantId,
+      id: plantId as string,
       name: formData.get('name') as string,
       datePlanted: formData.get('datePlanted') as string,
       harvestDate: formData.get('harvestDate') as string,

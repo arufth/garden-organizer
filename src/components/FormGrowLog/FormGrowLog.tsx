@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { defaultGrowLog } from '../../../constants'
 import { growLogType, handleEventChangeType } from '../../../types'
-import { GoBackSvg, UploadSvg } from '../../icons'
-import { EditButtons } from '../'
+import { UploadSvg } from '../../icons'
+import { EditButtons, PreviousPageButton } from '../'
 import { useGardenActions, useGetCurrentGrowLog } from '../../hooks'
 import './FormGrowLog.css'
 
@@ -13,8 +13,6 @@ export const FormGrowLog: React.FC = () => {
   const { plantId } = useParams()
 
   const { addGrowLog, updateGrowLog } = useGardenActions()
-  const navigate = useNavigate()
-  const goBack = (): void => { navigate(-1) }
 
   // TODO: check if the currentId is valid
 
@@ -71,10 +69,7 @@ export const FormGrowLog: React.FC = () => {
 
   return (
     <section className='add-edit-grow-log'>
-      <button onClick={goBack} className='go-prev-page'>
-        <GoBackSvg />
-        PREVIOUS PAGE
-      </button>
+      <PreviousPageButton />
 
       <form onSubmit={onSubmit}>
         <img src={formFields.cover} alt='' />

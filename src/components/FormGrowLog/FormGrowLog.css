@@ -4,29 +4,6 @@
   display: grid;
   place-items: center;
 
-  .go-prev-page {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    font-size: 2rem;
-    color: var(--black);
-    border: none;
-    background: transparent;
-    padding: .5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 300ms ease;
-    font-family: 'VT323', monospace;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-  }
-
-  .go-prev-page:hover {
-    color: var(--white);
-    background: var(--sec-orange);
-  }
-
   form {
     display: flex;
     flex-direction: column;

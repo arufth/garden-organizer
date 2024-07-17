@@ -15,6 +15,7 @@
     border-radius: 5px;
 
     .plant-name-title {
+      height: 4rem;
       font-size: 4rem;
       color: var(--sec-orange);
       -webkit-font-weight: bold;

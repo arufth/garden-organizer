@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { useGardenActions, useGardenSelector, useGetCurrentGrowLog, useSendGrowLog } from './'
 import { DEFAULT_GROW_LOG, FORM_FIELDS, GARDEN_ACTIONS_FORM } from '../../constants'
 import { growLogType, handleEventChangeType, ReturnTypeFormGrowLog } from '../../types'
-
 import { showAlert } from '../utils'
 
 export const useFormGrowLog = (): ReturnTypeFormGrowLog => {
@@ -22,8 +21,6 @@ export const useFormGrowLog = (): ReturnTypeFormGrowLog => {
     const form = event.currentTarget
     const formData = new FormData(form)
 
-    const cover = formFields.cover === '' ? '/image-placeholder.jpg' : formFields.cover
-
     const newGrowLog: growLogType = {
       ...DEFAULT_GROW_LOG,
       id: plantId as string,
@@ -31,7 +28,9 @@ export const useFormGrowLog = (): ReturnTypeFormGrowLog => {
       datePlanted: formData.get('datePlanted') as string,
       harvestDate: formData.get('harvestDate') as string,
       description: formData.get('description') as string,
-      cover // TODO: pick the correct image (user input)
+      cover: formFields.cover === ''
+        ? '/image-placeholder.jpg'
+        : formFields.cover
     }
 
     const subAction = currentAction === GARDEN_ACTIONS_FORM.UPDATE

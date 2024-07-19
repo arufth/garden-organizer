@@ -1,6 +1,6 @@
 import { getGarden } from './src/helper/getGarden'
-import { getGrowLog } from './src/services'
 import { initialStateType } from './types'
+import { growLog } from './growLog.json'
 
 export const defaultGrowLog = {
   id: '',
@@ -26,7 +26,7 @@ export const HEADER_TABLE = [
 ]
 
 export const defaultGarden: initialStateType = {
-  growLog: getGrowLog(),
+  growLog,
   currentSearch: '',
   currentId: '',
   currentGrowLog: defaultGrowLog,

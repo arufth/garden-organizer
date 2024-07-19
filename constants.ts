@@ -25,15 +25,15 @@ export const HEADER_TABLE = [
   'Delete'
 ]
 
-export const initialState: initialStateType = getGarden()
-
-export const initialState2: initialStateType = {
+export const defaultGarden: initialStateType = {
   growLog: getGrowLog(),
   currentSearch: '',
   currentId: '',
-  currentGrowLog: defaultGrowLog, // call getCurrentId()
+  currentGrowLog: defaultGrowLog,
   currentCoverImg: ''
 }
+
+export const initialState: initialStateType = getGarden()
 
 export const FORM_FIELDS = {
   name: '',

@@ -1,8 +1,8 @@
-import { getGarden } from './src/helper/getGarden'
+import { getGarden } from './src/helper'
 import { initialStateType } from './types'
 import { growLog } from './growLog.json'
 
-export const defaultGrowLog = {
+export const DEFAULT_GROW_LOG = {
   id: '',
   name: '',
   datePlanted: '',
@@ -25,11 +25,11 @@ export const HEADER_TABLE = [
   'Delete'
 ]
 
-export const defaultGarden: initialStateType = {
+export const DEFAULT_GARDEN: initialStateType = {
   growLog,
   currentSearch: '',
   currentId: '',
-  currentGrowLog: defaultGrowLog,
+  currentGrowLog: DEFAULT_GROW_LOG,
   currentCoverImg: ''
 }
 

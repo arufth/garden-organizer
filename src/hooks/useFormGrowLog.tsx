@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGardenActions, useGardenSelector, useGetCurrentGrowLog, useSendGrowLog } from './'
-import { defaultGrowLog, FORM_FIELDS, GARDEN_ACTIONS_FORM } from '../../constants'
+import { DEFAULT_GROW_LOG, FORM_FIELDS, GARDEN_ACTIONS_FORM } from '../../constants'
 import { growLogType, handleEventChangeType, ReturnTypeFormGrowLog } from '../../types'
 
 import { showAlert } from '../utils'
@@ -25,7 +25,7 @@ export const useFormGrowLog = (): ReturnTypeFormGrowLog => {
     const cover = formFields.cover === '' ? '/image-placeholder.jpg' : formFields.cover
 
     const newGrowLog: growLogType = {
-      ...defaultGrowLog,
+      ...DEFAULT_GROW_LOG,
       id: plantId as string,
       name: formData.get('name') as string,
       datePlanted: formData.get('datePlanted') as string,

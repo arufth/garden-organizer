@@ -1,3 +1,4 @@
+import { getGarden } from './src/helper/getGarden'
 import { getGrowLog } from './src/services'
 import { initialStateType } from './types'
 
@@ -24,7 +25,9 @@ export const HEADER_TABLE = [
   'Delete'
 ]
 
-export const initialState: initialStateType = {
+export const initialState: initialStateType = getGarden()
+
+export const initialState2: initialStateType = {
   growLog: getGrowLog(),
   currentSearch: '',
   currentId: '',

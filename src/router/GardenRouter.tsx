@@ -2,6 +2,9 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import { FormGrowLog } from '../components'
 import { TableView } from '../TableView'
 import { ElementView } from '../ElementView'
+import { useEffect } from 'react'
+import { useGardenSelector } from '../hooks'
+import { saveLocalStorage } from '../helper'
 
 const router = createBrowserRouter([
   {
@@ -26,4 +29,10 @@ const router = createBrowserRouter([
   }
 ])
 
-export const GardenRouter: React.FC = () => { return <RouterProvider router={router} /> }
+export const GardenRouter: React.FC = () => {
+  const state = useGardenSelector(state => state.garden)
+  useEffect(() => {
+    saveLocalStorage(state)
+  }, [state])
+  return <RouterProvider router={router} />
+}

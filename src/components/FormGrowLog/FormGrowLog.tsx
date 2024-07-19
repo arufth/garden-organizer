@@ -4,7 +4,7 @@ import { useFormGrowLog } from '../../hooks'
 import './FormGrowLog.css'
 
 export const FormGrowLog: React.FC = () => {
-  const { handleChange, onSubmit, formFields } = useFormGrowLog()
+  const { handleChange, onSubmit, formFields, onFileInputChange } = useFormGrowLog()
 
   return (
     <section className='add-edit-grow-log'>
@@ -61,8 +61,7 @@ export const FormGrowLog: React.FC = () => {
               </p>
               <input
                 className='file-input'
-                onChange={handleChange}
-            // value={formFields.cover} // TODO: change the cover input
+                onChange={onFileInputChange}
                 name='cover'
                 type='file'
               />

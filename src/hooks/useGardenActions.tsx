@@ -1,5 +1,5 @@
 import { GardenActionsReturnType, growLogType } from '../../types'
-import { addLog, removeLog, updateLog, changeCurrentSearch as changeCS, changeCurrentId as changeCID } from '../garden'
+import { addLog, removeLog, updateLog, changeCurrentSearch as changeCS, changeCurrentId as changeCID, startUploadingFile as startUF, setCoverImage as setCI } from '../garden'
 import { useGardenDispatch } from './useGardenDispatch'
 
 export const useGardenActions = (): GardenActionsReturnType => {
@@ -25,11 +25,24 @@ export const useGardenActions = (): GardenActionsReturnType => {
     dispatch(changeCID(id))
   }
 
+  const setCoverImage = (file: string): void => {
+    dispatch(setCI(file))
+  }
+
+  const startUploadingFile = (files: string[]): void => {
+    // const url = s
+    dispatch(startUF(files))
+      .then(console.log)
+      .catch(console.log)
+  }
+
   return {
     addGrowLog,
     removeGrowLog,
     updateGrowLog,
     changeCurrentSearch,
-    changeCurrentId
+    changeCurrentId,
+    startUploadingFile,
+    setCoverImage
   }
 }

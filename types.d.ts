@@ -29,6 +29,7 @@ export interface initialStateType {
   currentSearch: string
   currentId: string
   currentGrowLog: growLogType
+  currentCoverImg: string
 }
 
 export interface GardenActionsReturnType {
@@ -37,12 +38,15 @@ export interface GardenActionsReturnType {
   updateGrowLog: (growLog: growLogType) => void
   changeCurrentSearch: (search: string) => void
   changeCurrentId: (id: string) => void
+  startUploadingFile: (file: string[]) => void
+  setCoverImage: (file: string) => void
 }
 
 export interface ReturnTypeFormGrowLog {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
   handleChange: (event: handleEventChangeType) => void
   formFields: typeof FORM_FIELDS
+  onFileInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export interface ReturnTypeSendGrowLog {

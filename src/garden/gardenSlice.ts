@@ -44,6 +44,13 @@ export const gardenSlice: Slice<initialStateType> = createSlice({
         ...state,
         currentId: action.payload
       }
+    },
+
+    setCoverImage: (state, action: PayloadAction<string>) => {
+      return {
+        ...state,
+        currentCoverImg: action.payload
+      }
     }
   }
 })
@@ -53,5 +60,6 @@ export const {
   removeLog,
   updateLog,
   changeCurrentSearch,
-  changeCurrentId
+  changeCurrentId,
+  setCoverImage
 } = gardenSlice.actions

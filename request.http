@@ -1,0 +1,10 @@
+##
+POST https://api.cloudinary.com/v1_1/dsa0l81kc/upload
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+file: form-data; name="file"; filename="/public/radish_red_crunch.jpg
+Content-Type: image/jpeg
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+upload_preset: form-data; name="text"; value="garden-organizer"
+Content-Type: text/plain 

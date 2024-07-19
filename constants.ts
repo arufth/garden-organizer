@@ -28,7 +28,8 @@ export const initialState: initialStateType = {
   growLog: getGrowLog(),
   currentSearch: '',
   currentId: '',
-  currentGrowLog: defaultGrowLog // call getCurrentId()
+  currentGrowLog: defaultGrowLog, // call getCurrentId()
+  currentCoverImg: ''
 }
 
 export const FORM_FIELDS = {

@@ -1,19 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+
 import { useParams } from 'react-router-dom'
-import { useGardenActions, useGardenSelector, useGetCurrentGrowLog, useSendGrowLog } from './'
-import { DEFAULT_GROW_LOG, FORM_FIELDS, GARDEN_ACTIONS_FORM } from '../../constants'
+import { useFormFields, useGardenActions, useSendGrowLog } from './'
+import { DEFAULT_GROW_LOG } from '../../constants'
 import { growLogType, handleEventChangeType, ReturnTypeFormGrowLog } from '../../types'
-import { showAlert } from '../utils'
+import { getInfoAlert, getSubAction, showAlert } from '../utils'
 
 export const useFormGrowLog = (): ReturnTypeFormGrowLog => {
   const { plantId } = useParams()
-  const [formFields, setFormFields] = useState(FORM_FIELDS)
-  const [currentAction, setCurrentAction] = useState('')
-  const currentGrowLog = useGetCurrentGrowLog()
+  const { formFields, currentAction, changeFormFields, isFirstView } = useFormFields()
   const { sendGrowLog } = useSendGrowLog()
   const { startUploadingFile } = useGardenActions()
-  const { currentCoverImg } = useGardenSelector(state => state.garden)
-  const isFirstView = useRef(true)
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
@@ -33,14 +29,8 @@ export const useFormGrowLog = (): ReturnTypeFormGrowLog => {
         : formFields.cover
     }
 
-    const subAction = currentAction === GARDEN_ACTIONS_FORM.UPDATE
-      ? 'updat'
-      : 'add'
-
-    const info = {
-      title: `You just ${subAction}ed ${formFields.name}.`,
-      text: 'You can continue modify this grow log.'
-    }
+    const subAction = getSubAction(currentAction)
+    const info = getInfoAlert(subAction, formFields.name)
 
     showAlert(info)
       .finally(() => sendGrowLog(newGrowLog, currentAction))
@@ -48,10 +38,11 @@ export const useFormGrowLog = (): ReturnTypeFormGrowLog => {
 
   const handleChange = (event: handleEventChangeType): void => {
     const { name, value } = event.target
-    setFormFields(prevFields => ({
-      ...prevFields,
+    const newFormFields = {
+      ...formFields,
       [name]: value
-    }))
+    }
+    changeFormFields(newFormFields)
   }
 
   const onFileInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -60,37 +51,6 @@ export const useFormGrowLog = (): ReturnTypeFormGrowLog => {
     if (target.files?.length === 0 || target.files === null) return
     startUploadingFile(target.files as unknown as string[])
   }
-
-  useEffect(() => {
-    const name = currentGrowLog.name
-    const description = currentGrowLog.description
-    const datePlanted = currentGrowLog.datePlanted
-    const harvestDate = currentGrowLog.harvestDate
-    const cover = currentGrowLog.cover !== ''
-      ? currentGrowLog.cover
-      : '/image-placeholder.jpg'
-
-    setCurrentAction(name !== ''
-      ? GARDEN_ACTIONS_FORM.UPDATE
-      : GARDEN_ACTIONS_FORM.ADD)
-
-    setFormFields({
-      name,
-      description,
-      harvestDate,
-      datePlanted,
-      cover
-    })
-  }, [currentGrowLog])
-
-  useEffect(() => {
-    if (!isFirstView.current) {
-      setFormFields(prevFields => ({
-        ...prevFields,
-        cover: currentCoverImg
-      }))
-    }
-  }, [currentCoverImg])
 
   return {
     onSubmit,

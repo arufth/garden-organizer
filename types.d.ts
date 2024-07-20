@@ -52,3 +52,16 @@ export interface ReturnTypeFormGrowLog {
 export interface ReturnTypeSendGrowLog {
   sendGrowLog: (newGrowLog: growLogType, currentAction: string) => void
 }
+
+export interface ReturnTypeFormFields {
+  formFields: typeof FORM_FIELDS
+  currentAction: string
+  changeFormFields: (newFormFields: typeof FORM_FIELDS) => void
+  currentCoverImg: string
+  isFirstView: React.MutableRefObject<boolean>
+}
+
+export interface ReturnTypeInfoAlert {
+  title: string
+  text: string
+}
